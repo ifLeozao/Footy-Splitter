@@ -1,37 +1,37 @@
 
 E
-java:S1604+"(Make this anonymous inner class a lambda(ë¼äÈ8†˜ˆİ‘2
+java:S1604,"(Make this anonymous inner class a lambda(ë¼äÈ8åçİ‘2
 E
-java:S16043"(Make this anonymous inner class a lambda(îğ£™8‡˜ˆİ‘2
+java:S16044"(Make this anonymous inner class a lambda(îğ£™8åçİ‘2
 X
-java:S1874?"6Remove this use of "getPackageInfo"; it is deprecated.(Îü÷ªüÿÿÿÿ8°˜ˆİ‘2
-š
-java:S3776G"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(Âñ€ÿÿÿÿÿ8ÈÄÕ±ù1J$63bc6dbd-711b-4863-977d-58a95df54630
-
-java:S1155d">Use isEmpty() to check whether the collection is empty or not.(ÚÓ¹³8éÄÕ±ù1J$f2711374-7e06-4aad-9415-a6aa96e1a363
-q
-java:S5413g")Verify that "remove()" is used correctly.(íÁãòûÿÿÿÿ8îÄÕ±ù1J$caa07ccd-7cba-42c6-b68b-8e9d3978332b
-†
-java:S1155f">Use isEmpty() to check whether the collection is empty or not.(òÈºƒúÿÿÿÿ8±¦¯ù1J$0f484037-b2ab-40e1-b6a4-1a01b8536dc3
-†
-java:S1155n">Use isEmpty() to check whether the collection is empty or not.(ÍÉ‚ïøÿÿÿÿ8øÄÕ±ù1J$bebfebdc-f67e-4583-ba16-90435f4eaad2
-k
-java:S5413q")Verify that "remove()" is used correctly.(Ê «F8ıÄÕ±ù1J$66affe1f-faff-41c0-9c7a-a720f259d8c7
-†
-java:S1155p">Use isEmpty() to check whether the collection is empty or not.(³œ·¢øÿÿÿÿ8¤±¦¯ù1J$1984dcdd-d0e4-4855-b0f8-1f28fcf1a3fd
-x
-java:S1874x"0Remove this use of "getColor"; it is deprecated.(“Ã¦Ñıÿÿÿÿ8‰ÅÕ±ù1J$6f5c401f-3a9c-4fba-9a77-f5a03532b3d7
-x
-java:S1874y"0Remove this use of "getColor"; it is deprecated.(ğ–òüÿÿÿÿ8ÅÕ±ù1J$e2e1dea8-d628-4e0a-ac17-ee0e8bda01ab
-™
-java:S3252"PUse static access with "android.view.ViewGroup$LayoutParams" for "MATCH_PARENT".(„¸ğÂşÿÿÿÿ8˜ÅÕ±ù1J$639273cb-eb2a-423b-a5a4-62e1a96aa8c3
-”
-java:S3252‚"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(ûë‰8šÅÕ±ù1J$36da60a0-0de5-44a4-a8c5-f659f6b3d044
+java:S1874@"6Remove this use of "getPackageInfo"; it is deprecated.(Îü÷ªüÿÿÿÿ8Œèİ‘2
+t
+java:S3776I"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(Âñ€ÿÿÿÿÿ8èİ‘2
+[
+java:S1155f">Use isEmpty() to check whether the collection is empty or not.(ÚÓ¹³8šèİ‘2
+K
+java:S5413i")Verify that "remove()" is used correctly.(íÁãòûÿÿÿÿ8œèİ‘2
+`
+java:S1155h">Use isEmpty() to check whether the collection is empty or not.(òÈºƒúÿÿÿÿ8œèİ‘2
+`
+java:S1155p">Use isEmpty() to check whether the collection is empty or not.(ÍÉ‚ïøÿÿÿÿ8èİ‘2
+E
+java:S5413s")Verify that "remove()" is used correctly.(Ê «F8Ÿèİ‘2
+`
+java:S1155r">Use isEmpty() to check whether the collection is empty or not.(³œ·¢øÿÿÿÿ8Ÿèİ‘2
+R
+java:S1874z"0Remove this use of "getColor"; it is deprecated.(“Ã¦Ñıÿÿÿÿ8¡èİ‘2
+R
+java:S1874{"0Remove this use of "getColor"; it is deprecated.(ğ–òüÿÿÿÿ8¢èİ‘2
+s
+java:S3252ƒ"PUse static access with "android.view.ViewGroup$LayoutParams" for "MATCH_PARENT".(„¸ğÂşÿÿÿÿ8¥èİ‘2
+n
+java:S3252„"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(ûë‰8¦èİ‘2
 ;
-java:S1128"Remove this duplicated import.(€¶£î8à˜ˆİ‘2
+java:S1128"Remove this duplicated import.(€¶£î8°èİ‘2
 ;
-java:S1128"Remove this duplicated import.(÷‰îƒ8à˜ˆİ‘2
+java:S1128"Remove this duplicated import.(÷‰îƒ8±èİ‘2
 @
-java:S1128"Remove this duplicated import.(¢³ïÓşÿÿÿÿ8à˜ˆİ‘2
+java:S1128"Remove this duplicated import.(¢³ïÓşÿÿÿÿ8±èİ‘2
 @
-java:S1128"Remove this duplicated import.(Õë±Äøÿÿÿÿ8á˜ˆİ‘2
+java:S1128"Remove this duplicated import.(Õë±Äøÿÿÿÿ8±èİ‘2
