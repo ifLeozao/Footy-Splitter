@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#16345c">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#16345c"
+        android:padding="8dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTextPlayers"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/edit_text_border"
+        android:gravity="top"
+        android:hint="Enter player names, one per line"
+        android:inputType="textMultiLine"
+        android:minLines="10"
+        android:padding="10dp"
+        android:textColor="#3A8ADE" />
+
+    <CheckBox
+        android:id="@+id/checkBoxDistributeFirst12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Distribute first 12 players between Team 1 and Team 2"
+        android:textColor="#FFFFFF" />
+
+    <Spinner
+        android:id="@+id/spinnerTeamSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#1F4D89"
+        android:textColor="#3A8ADE"
+        android:prompt="@string/select_team_size"/>
+
+    <Button
+        android:id="@+id/buttonGenerateTeams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="#0D2749"
+        android:text="Generate Teams"
+        android:textColor="#3A8ADE" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/developerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/developer_name"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/appVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_version"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</LinearLayout>

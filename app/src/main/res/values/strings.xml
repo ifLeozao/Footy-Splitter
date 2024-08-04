@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">FootySplitter</string>
+    <string name="developer_name">By ifLeozão</string>
+    <string name="app_version">1.0</string>
+    <string name="select_team_size">Select team size</string>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#16345c</item>
+        <item name="colorPrimaryDark">#16345c</item>
+        <item name="colorAccent">#FF4081</item>
+        <item name="android:statusBarColor">#16345c</item>
+        <item name="android:windowBackground">#2a4864</item>
+    </style>
+
+    <!-- Team size options for the Spinner -->
+    <string-array name="team_sizes">
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+</resources>
