@@ -1,5 +1,6 @@
 package com.btti.footysplitter;
 
+import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -68,6 +69,7 @@ public class TeamsActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void generateTeams(String playerList, boolean distributeFirst12, int teamSize) {
         teamsContainer.removeAllViews();
 
