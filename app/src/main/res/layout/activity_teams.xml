@@ -60,6 +60,30 @@
         android:gravity="center"
         android:padding="8dp" />
 
+    <Button
+        android:id="@+id/buttonStartMatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text="Iniciar Partida"
+        android:textColor="#3A8ADE"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/buttonStopVibration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text="Parar Vibração"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
+        android:padding="8dp"
+        android:layout_gravity="center"/>
+
     <!-- Rodapé com nome do desenvolvedor e versão do app -->
     <LinearLayout
         android:layout_width="match_parent"

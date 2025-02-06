@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#16345c"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/textViewTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:00"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:paddingBottom="20dp" />
+
+    <Button
+        android:id="@+id/buttonStartPause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iniciar"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#3A8ADE"
+        android:padding="10dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/buttonStopVibration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parar Vibração"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FF3A3A"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/buttonReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reiniciar"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FFAA00"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/buttonBackToTeams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to Teams"
+        android:textColor="#3A8ADE"
+        android:background="@drawable/rounded_button"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
