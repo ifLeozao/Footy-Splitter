@@ -32,13 +32,14 @@
         android:inputType="textMultiLine"
         android:minLines="10"
         android:padding="10dp"
-        android:textColor="#3A8ADE" />
+        android:textColor="#050D16"
+        />
 
     <CheckBox
         android:id="@+id/checkBoxDistributeFirst12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Distribute first 12 players between Team 1 and Team 2"
+        android:text="Distribute first 10 or 12 players between Team 1 and Team 2"
         android:textColor="#FFFFFF" />
 
     <Spinner
@@ -57,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="#0D2749"
+        android:background="@drawable/rounded_button"
         android:text="Generate Teams"
         android:textColor="#3A8ADE" />
 
