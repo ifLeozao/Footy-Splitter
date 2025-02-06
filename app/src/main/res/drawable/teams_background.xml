@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Fundo com transparência leve (70 = 43% de opacidade) -->
+    <solid android:color="#70E0F7FF"/>
+
+    <!-- Borda mais fina ou removida -->
+    <stroke android:width="1dp" android:color="#3A8ADE"/>
+
+    <!-- Cantos arredondados -->
+    <corners android:radius="8dp"/>
+
+    <!-- Espaçamento interno -->
+    <padding android:left="10dp" android:top="10dp" android:right="10dp" android:bottom="10dp"/>
+</shape>

@@ -18,12 +18,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class TeamsActivity extends AppCompatActivity {
     private LinearLayout teamsContainer;
 
@@ -79,39 +73,43 @@ public class TeamsActivity extends AppCompatActivity {
         List<List<String>> teams = new ArrayList<>();
 
         if (distributeFirst12) {
-            List<String> first12Players = players.subList(0, Math.min(players.size(), 12));
-            Collections.shuffle(first12Players);
-            List<String> remainingPlayers = players.subList(Math.min(players.size(), 12), players.size());
+            // Ajustando para pegar os primeiros (teamSize * 2) jogadores
+            int firstPlayersCount = Math.min(players.size(), teamSize * 2);
+            List<String> firstPlayers = new ArrayList<>(players.subList(0, firstPlayersCount));
+            Collections.shuffle(firstPlayers);
+
+            List<String> remainingPlayers = new ArrayList<>(players.subList(firstPlayersCount, players.size()));
 
             List<String> team1 = new ArrayList<>();
             List<String> team2 = new ArrayList<>();
 
-            for (int i = 0; i < first12Players.size(); i++) {
+            // Distribuir sequencialmente os primeiros jogadores entre os dois times
+            for (int i = 0; i < firstPlayers.size(); i++) {
                 if (i % 2 == 0) {
-                    team1.add(first12Players.get(i));
+                    team1.add(firstPlayers.get(i));
                 } else {
-                    team2.add(first12Players.get(i));
+                    team2.add(firstPlayers.get(i));
                 }
             }
 
             teams.add(team1);
             teams.add(team2);
 
+            // Embaralha os jogadores restantes e continua formando times do mesmo tamanho
             Collections.shuffle(remainingPlayers);
-
-            while (remainingPlayers.size() > 0) {
+            while (!remainingPlayers.isEmpty()) {
                 List<String> team = new ArrayList<>();
-                for (int i = 0; i < teamSize && remainingPlayers.size() > 0; i++) {
+                for (int i = 0; i < teamSize && !remainingPlayers.isEmpty(); i++) {
                     team.add(remainingPlayers.remove(0));
                 }
                 teams.add(team);
             }
         } else {
+            // Distribuição padrão
             Collections.shuffle(players);
-
-            while (players.size() > 0) {
+            while (!players.isEmpty()) {
                 List<String> team = new ArrayList<>();
-                for (int i = 0; i < teamSize && players.size() > 0; i++) {
+                for (int i = 0; i < teamSize && !players.isEmpty(); i++) {
                     team.add(players.remove(0));
                 }
                 teams.add(team);

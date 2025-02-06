@@ -6,22 +6,7 @@
     android:padding="16dp"
     android:background="#16345c">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#16345c"
-        android:padding="8dp"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
+    <!-- Container com ScrollView para lista de times -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -31,34 +16,51 @@
             android:id="@+id/teamsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#1A237E"
+            android:background="@drawable/teams_background"
             android:orientation="vertical" />
     </ScrollView>
 
+    <!-- Centraliza os botões abaixo da lista de times -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingTop="16dp">
 
         <Button
             android:id="@+id/buttonBackToInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_button"
             android:text="Back to Input"
-            android:backgroundTint="#0D2749"
-            android:textColor="#3A8ADE" />
+            android:textColor="#3A8ADE"
+            android:textStyle="bold"
+            android:padding="8dp" />
 
         <Button
             android:id="@+id/buttonRegenerateTeams"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
             android:text="Regenerate Teams"
-            android:layout_marginStart="16dp"
-            android:backgroundTint="#0D2749"
-            android:textColor="#3A8ADE" />
+            android:textColor="#3A8ADE"
+            android:textStyle="bold"
+            android:padding="8dp" />
     </LinearLayout>
 
+    <!-- Mantém o TextView para exibir os times abaixo dos botões -->
+    <TextView
+        android:id="@+id/textViewTeams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:padding="8dp" />
+
+    <!-- Rodapé com nome do desenvolvedor e versão do app -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,4 +82,5 @@
             android:text="@string/app_version"
             android:textColor="#FFFFFF" />
     </LinearLayout>
+
 </LinearLayout>
