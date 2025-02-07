@@ -26,7 +26,6 @@ public class TeamsActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "MatchPrefs";
     private static final String KEY_TIMER_RUNNING = "timerRunning";
-    private Button buttonStopVibration;
     private static final String KEY_TIMER_FINISHED = "timerFinished";
 
     @Override
@@ -49,14 +48,14 @@ public class TeamsActivity extends AppCompatActivity {
         }
 
         String playerList = getIntent().getStringExtra("playerList");
-        boolean distributeFirst12 = getIntent().getBooleanExtra("distributeFirst12", false);
+        boolean distributeFirst = getIntent().getBooleanExtra("distributeFirst", false);
         int teamSize = getIntent().getIntExtra("teamSize", 6);
 
-        generateTeams(playerList, distributeFirst12, teamSize);
+        generateTeams(playerList, distributeFirst, teamSize);
 
         buttonRegenerateTeams.setOnClickListener(v -> {
-            generateTeams(playerList, distributeFirst12, teamSize);
-            Toast.makeText(TeamsActivity.this, "Teams regenerated", Toast.LENGTH_SHORT).show();
+            generateTeams(playerList, distributeFirst, teamSize);
+            Toast.makeText(TeamsActivity.this, "Times gerados novamente!", Toast.LENGTH_SHORT).show();
         });
 
         buttonBackToInput.setOnClickListener(v -> finish());
@@ -80,7 +79,7 @@ public class TeamsActivity extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    private void generateTeams(String playerList, boolean distributeFirst12, int teamSize) {
+    private void generateTeams(String playerList, boolean distributeFirst, int teamSize) {
         teamsContainer.removeAllViews();
 
         List<String> players = new ArrayList<>();
@@ -92,14 +91,53 @@ public class TeamsActivity extends AppCompatActivity {
         }
 
         List<List<String>> teams = new ArrayList<>();
-        Collections.shuffle(players);
 
-        while (!players.isEmpty()) {
-            List<String> team = new ArrayList<>();
-            for (int i = 0; i < teamSize && !players.isEmpty(); i++) {
-                team.add(players.remove(0));
+        if (distributeFirst) {
+            int firstPlayersCount;
+            if (teamSize == 6) {
+                firstPlayersCount = Math.min(players.size(), 12);
+            } else if (teamSize == 5) {
+                firstPlayersCount = Math.min(players.size(), 10);
+            } else {
+                firstPlayersCount = Math.min(players.size(), 8);
             }
-            teams.add(team);
+
+            List<String> firstPlayers = new ArrayList<>(players.subList(0, firstPlayersCount));
+            Collections.shuffle(firstPlayers);
+
+            List<String> remainingPlayers = new ArrayList<>(players.subList(firstPlayersCount, players.size()));
+
+            List<String> team1 = new ArrayList<>();
+            List<String> team2 = new ArrayList<>();
+
+            for (int i = 0; i < firstPlayers.size(); i++) {
+                if (i % 2 == 0) {
+                    team1.add(firstPlayers.get(i));
+                } else {
+                    team2.add(firstPlayers.get(i));
+                }
+            }
+
+            teams.add(team1);
+            teams.add(team2);
+
+            Collections.shuffle(remainingPlayers);
+            while (!remainingPlayers.isEmpty()) {
+                List<String> team = new ArrayList<>();
+                for (int i = 0; i < teamSize && !remainingPlayers.isEmpty(); i++) {
+                    team.add(remainingPlayers.remove(0));
+                }
+                teams.add(team);
+            }
+        } else {
+            Collections.shuffle(players);
+            while (!players.isEmpty()) {
+                List<String> team = new ArrayList<>();
+                for (int i = 0; i < teamSize && !players.isEmpty(); i++) {
+                    team.add(players.remove(0));
+                }
+                teams.add(team);
+            }
         }
 
         int teamBackgroundColor = getResources().getColor(R.color.team_background);

@@ -6,22 +6,6 @@
     android:padding="16dp"
     android:background="#16345c">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#16345c"
-        android:padding="8dp"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
     <EditText
         android:id="@+id/editTextPlayers"
         android:layout_width="match_parent"
@@ -39,7 +23,7 @@
         android:id="@+id/checkBoxDistributeFirst12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Distribute first 10 or 12 players between Team 1 and Team 2"
+        android:text="Distribute first 8, 10 or 12 players between Team 1 and Team 2"
         android:textColor="#FFFFFF" />
 
     <Spinner
@@ -52,16 +36,29 @@
         android:textColor="#3A8ADE"
         android:prompt="@string/select_team_size"/>
 
-    <Button
-        android:id="@+id/buttonGenerateTeams"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="#0D2749"
-        android:background="@drawable/rounded_button"
-        android:text="Generate Teams"
-        android:textColor="#3A8ADE" />
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="268dp">
+
+        <Button
+            android:id="@+id/buttonGenerateTeams"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:text="Generate Teams"
+            android:textColor="#3A8ADE"
+            android:textStyle="bold"
+            android:padding="8dp" />
+    </LinearLayout>
+
+
+
+    <!-- Rodapé com nome do desenvolvedor e versão do app -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

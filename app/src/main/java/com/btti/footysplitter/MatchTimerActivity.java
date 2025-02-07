@@ -1,13 +1,9 @@
 package com.btti.footysplitter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,22 +13,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.btti.teamfutsorteio.R;
 
 public class MatchTimerActivity extends AppCompatActivity {
-    private TextView textViewTimer;
-    private Button buttonStartPause, buttonStopVibration, buttonReset, buttonBackToTeams, buttonRestart;
+    private TextView textViewTimer, textViewTeam1Score, textViewTeam2Score;
+    private Button buttonStartPause, buttonBackToTeams;
     private CountDownTimer countDownTimer;
     private boolean isTimerRunning = false;
-    private long timeLeftInMillis;
-    private long endTime;
-    private MediaPlayer mediaPlayer;
-    private Vibrator vibrator;
-
+    private long timeLeftInMillis = 10 * 60 * 1000;
     private SharedPreferences preferences;
+    private Button buttonRestartTimer;
+
+
     private static final String PREFS_NAME = "MatchPrefs";
     private static final String KEY_TIME_LEFT = "timeLeft";
     private static final String KEY_TIMER_RUNNING = "timerRunning";
-    private static final String KEY_END_TIME = "endTime";
-    private static final String KEY_TIMER_FINISHED = "timerFinished";
-
+    private static final String KEY_TEAM1_SCORE = "team1Score";
+    private static final String KEY_TEAM2_SCORE = "team2Score";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +34,15 @@ public class MatchTimerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_match_timer);
 
         textViewTimer = findViewById(R.id.textViewTimer);
+        textViewTeam1Score = findViewById(R.id.textViewTeam1Score);
+        textViewTeam2Score = findViewById(R.id.textViewTeam2Score);
         buttonStartPause = findViewById(R.id.buttonStartPause);
-        buttonStopVibration = findViewById(R.id.buttonStopVibration);
-        buttonReset = findViewById(R.id.buttonReset);
         buttonBackToTeams = findViewById(R.id.buttonBackToTeams);
-        buttonRestart = findViewById(R.id.buttonReset);
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.whistle);
-        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         loadTimerState();
+        loadScoreState();
 
         buttonStartPause.setOnClickListener(v -> {
             if (isTimerRunning) {
@@ -60,31 +52,27 @@ public class MatchTimerActivity extends AppCompatActivity {
             }
         });
 
-        buttonStopVibration.setOnClickListener(v -> stopVibrationAndSound());
-
-        buttonReset.setOnClickListener(v -> resetTimer());
-
-        buttonRestart.setOnClickListener(v -> restartTimer());
-
         buttonBackToTeams.setOnClickListener(v -> {
-            if (timeLeftInMillis <= 0) {
-                resetTimer();
-            }
             saveTimerState();
+            saveScoreState();
             Intent intent = new Intent(MatchTimerActivity.this, TeamsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             finish();
         });
 
-        buttonStopVibration.setVisibility(View.GONE);
-        buttonReset.setVisibility(View.GONE);
-        buttonRestart.setVisibility(View.GONE);
+        findViewById(R.id.buttonIncreaseTeam1).setOnClickListener(v -> updateScore(1, 1));
+        findViewById(R.id.buttonDecreaseTeam1).setOnClickListener(v -> updateScore(1, -1));
+        findViewById(R.id.buttonIncreaseTeam2).setOnClickListener(v -> updateScore(2, 1));
+        findViewById(R.id.buttonDecreaseTeam2).setOnClickListener(v -> updateScore(2, -1));
+
+        buttonRestartTimer = findViewById(R.id.buttonRestartTimer);
+        buttonRestartTimer.setVisibility(View.GONE);
+
     }
 
     private void startTimer() {
-        endTime = System.currentTimeMillis() + timeLeftInMillis;
-        countDownTimer = new CountDownTimer(timeLeftInMillis, 10) {
+        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timeLeftInMillis = millisUntilFinished;
@@ -93,13 +81,14 @@ public class MatchTimerActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                onFinishTimer();
+                isTimerRunning = false;
+                buttonStartPause.setText("Iniciar");
+                saveTimerState();
             }
         }.start();
 
         isTimerRunning = true;
         buttonStartPause.setText("Pausar");
-        buttonRestart.setVisibility(View.GONE);
         saveTimerState();
     }
 
@@ -109,115 +98,71 @@ public class MatchTimerActivity extends AppCompatActivity {
         }
         isTimerRunning = false;
         buttonStartPause.setText("Iniciar");
-        buttonRestart.setVisibility(View.VISIBLE);
+
+        buttonRestartTimer.setVisibility(View.VISIBLE);
+
         saveTimerState();
+
+        buttonRestartTimer.setOnClickListener(v -> restartTimer());
+
     }
 
     private void restartTimer() {
-        timeLeftInMillis = 10 * 60 * 10;
-        updateTimerText();
-        buttonRestart.setVisibility(View.GONE);
-        buttonStartPause.setText("Iniciar");
-        isTimerRunning = false;
-        saveTimerState();
-    }
-
-    private void resetTimer() {
-        stopVibrationAndSound();
         timeLeftInMillis = 10 * 60 * 1000;
         updateTimerText();
-        isTimerRunning = false;
-        buttonStartPause.setVisibility(View.VISIBLE);
+        buttonRestartTimer.setVisibility(View.GONE);
         buttonStartPause.setText("Iniciar");
-        buttonReset.setVisibility(View.GONE);
-        buttonStopVibration.setVisibility(View.GONE);
-        buttonRestart.setVisibility(View.GONE);
-        saveTimerState();
-    }
-
-
-    private void onFinishTimer() {
         isTimerRunning = false;
-        buttonStartPause.setVisibility(View.GONE);
-        buttonStopVibration.setVisibility(View.VISIBLE);
-        buttonReset.setVisibility(View.VISIBLE);
-        buttonRestart.setVisibility(View.GONE);
-
-        startSoundLoop();
-        startVibration();
-
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean(KEY_TIMER_FINISHED, true);
-        editor.apply();
-    }
-
-    private void startVibration() {
-        if (vibrator != null && vibrator.hasVibrator()) {
-            vibrator.vibrate(VibrationEffect.createWaveform(new long[]{500, 1000}, 0));
-        }
-    }
-
-    private void startSoundLoop() {
-        if (mediaPlayer != null) {
-            mediaPlayer.setLooping(true);
-            mediaPlayer.start();
-        }
-    }
-
-    private void stopVibrationAndSound() {
-        if (vibrator != null) {
-            vibrator.cancel();
-        }
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.prepareAsync();
-        }
-        buttonStopVibration.setVisibility(View.GONE);
-        buttonReset.setVisibility(View.VISIBLE);
-        buttonRestart.setVisibility(View.VISIBLE);
-        buttonStartPause.setVisibility(View.GONE);
         saveTimerState();
     }
 
     private void updateTimerText() {
         int minutes = (int) (timeLeftInMillis / 1000) / 60;
         int seconds = (int) (timeLeftInMillis / 1000) % 60;
-        String timeFormatted = String.format("%02d:%02d", minutes, seconds);
-        textViewTimer.setText(timeFormatted);
+        textViewTimer.setText(String.format("%02d:%02d", minutes, seconds));
+    }
+
+    private void updateScore(int team, int change) {
+        int score;
+        if (team == 1) {
+            score = Integer.parseInt(textViewTeam1Score.getText().toString());
+            score = Math.max(0, score + change);
+            textViewTeam1Score.setText(String.valueOf(score));
+        } else {
+            score = Integer.parseInt(textViewTeam2Score.getText().toString());
+            score = Math.max(0, score + change);
+            textViewTeam2Score.setText(String.valueOf(score));
+        }
+        saveScoreState();
     }
 
     private void saveTimerState() {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putLong(KEY_TIME_LEFT, timeLeftInMillis);
         editor.putBoolean(KEY_TIMER_RUNNING, isTimerRunning);
-        editor.putLong(KEY_END_TIME, endTime);
         editor.apply();
     }
 
-    private void loadTimerState() {
-        timeLeftInMillis = preferences.getLong(KEY_TIME_LEFT, 10 * 60 * 10);
-        isTimerRunning = preferences.getBoolean(KEY_TIMER_RUNNING, false);
-        endTime = preferences.getLong(KEY_END_TIME, 0);
-
-        if (isTimerRunning) {
-            timeLeftInMillis = endTime - System.currentTimeMillis();
-            if (timeLeftInMillis <= 0) {
-                onFinishTimer();
-            } else {
-                startTimer();
-            }
-        } else {
-            updateTimerText();
-        }
+    private void saveScoreState() {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(KEY_TEAM1_SCORE, Integer.parseInt(textViewTeam1Score.getText().toString()));
+        editor.putInt(KEY_TEAM2_SCORE, Integer.parseInt(textViewTeam2Score.getText().toString()));
+        editor.apply();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        stopVibrationAndSound();
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-            mediaPlayer = null;
+    private void loadScoreState() {
+        textViewTeam1Score.setText(String.valueOf(preferences.getInt(KEY_TEAM1_SCORE, 0)));
+        textViewTeam2Score.setText(String.valueOf(preferences.getInt(KEY_TEAM2_SCORE, 0)));
+    }
+
+    private void loadTimerState() {
+        timeLeftInMillis = preferences.getLong(KEY_TIME_LEFT, 10 * 60 * 1000);
+        isTimerRunning = preferences.getBoolean(KEY_TIMER_RUNNING, false);
+
+        if (isTimerRunning) {
+            startTimer();
+        } else {
+            updateTimerText();
         }
     }
 }
