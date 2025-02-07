@@ -20,7 +20,7 @@ import com.btti.teamfutsorteio.R;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editTextPlayers;
-    private CheckBox checkBoxDistributeFirst12;
+    private CheckBox checkBoxDistributeFirst;
     private Spinner spinnerTeamSize;
 
     private static final String PREFS_NAME = "FootySplitterPrefs";
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         editTextPlayers = findViewById(R.id.editTextPlayers);
-        checkBoxDistributeFirst12 = findViewById(R.id.checkBoxDistributeFirst12);
+        checkBoxDistributeFirst = findViewById(R.id.checkBoxDistributeFirst12);
         spinnerTeamSize = findViewById(R.id.spinnerTeamSize);
         Button buttonGenerateTeams = findViewById(R.id.buttonGenerateTeams);
 
@@ -43,31 +43,28 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTeamSize.setAdapter(adapter);
 
-        buttonGenerateTeams.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String players = editTextPlayers.getText().toString().trim();
-                if (players.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Please enter at least one player", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                boolean distributeFirst12 = checkBoxDistributeFirst12.isChecked();
-                int teamSize = getSelectedTeamSize();
-
-                if (teamSize <= 0) {
-                    Toast.makeText(MainActivity.this, "Invalid team size. Please select a valid option.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                savePlayersList(players);
-
-                Intent intent = new Intent(MainActivity.this, TeamsActivity.class);
-                intent.putExtra("playerList", players);
-                intent.putExtra("distributeFirst12", distributeFirst12);
-                intent.putExtra("teamSize", teamSize);
-                startActivity(intent);
+        buttonGenerateTeams.setOnClickListener(v -> {
+            String players = editTextPlayers.getText().toString().trim();
+            if (players.isEmpty()) {
+                Toast.makeText(MainActivity.this, "Digite pelo menos um jogador!", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            boolean distributeFirst = checkBoxDistributeFirst.isChecked();
+            int teamSize = getSelectedTeamSize();
+
+            if (teamSize != 4 && teamSize != 5 && teamSize != 6) {
+                Toast.makeText(MainActivity.this, "Selecione um tamanho válido para o time!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            savePlayersList(players);
+
+            Intent intent = new Intent(MainActivity.this, TeamsActivity.class);
+            intent.putExtra("playerList", players);
+            intent.putExtra("distributeFirst", distributeFirst);
+            intent.putExtra("teamSize", teamSize);
+            startActivity(intent);
         });
 
         TextView developerName = findViewById(R.id.developerName);
@@ -98,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             String version = pInfo.versionName;
             appVersion.setText(getString(R.string.app_version) + " " + version);
         } catch (PackageManager.NameNotFoundException e) {
-            appVersion.setText("Version not found");
+            appVersion.setText("Versão não encontrada");
             e.printStackTrace();
         }
     }

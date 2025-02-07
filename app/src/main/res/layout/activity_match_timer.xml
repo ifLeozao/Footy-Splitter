@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#16345c"
+    android:padding="20dp">
+
+    <!-- Título dos Times -->
+    <TextView
+        android:id="@+id/textViewTeamsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Team 1 : Team 2"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:paddingBottom="10dp" />
+
+    <!-- Placar -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="20dp">
+
+        <!-- Placar Time 1 -->
+        <TextView
+            android:id="@+id/textViewTeam1Score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"/>
+
+        <!-- Texto "X" separando os placares -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" X "
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
+
+        <!-- Placar Time 2 -->
+        <TextView
+            android:id="@+id/textViewTeam2Score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"/>
+    </LinearLayout>
+
+    <!-- Botões de controle do placar -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="20dp">
+
+        <!-- Botão diminuir Time 1 -->
+        <Button
+            android:id="@+id/buttonDecreaseTeam1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="-"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF3A3A"/>
+
+        <!-- Botão aumentar Time 1 -->
+        <Button
+            android:id="@+id/buttonIncreaseTeam1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="+"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#3A8ADE"
+            android:layout_marginLeft="10dp"/>
+
+        <!-- Espaço entre os botões dos times -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="match_parent"/>
+
+        <!-- Botão diminuir Time 2 -->
+        <Button
+            android:id="@+id/buttonDecreaseTeam2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="-"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF3A3A"/>
+
+        <!-- Botão aumentar Time 2 -->
+        <Button
+            android:id="@+id/buttonIncreaseTeam2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="+"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#3A8ADE"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+    <!-- Timer -->
+    <TextView
+        android:id="@+id/textViewTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:00"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:paddingBottom="20dp" />
+
+    <!-- Botão Iniciar/Pausar -->
+    <Button
+        android:id="@+id/buttonStartPause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iniciar"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#3A8ADE"
+        android:padding="10dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/buttonRestartTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reiniciar Cronômetro"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FFAA00"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Botão para Parar Vibração -->
+    <Button
+        android:id="@+id/buttonStopVibration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parar Vibração"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FF3A3A"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Botão para Resetar Timer -->
+    <Button
+        android:id="@+id/buttonReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reiniciar"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FFAA00"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Botão para Voltar -->
+    <Button
+        android:id="@+id/buttonBackToTeams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/rounded_button"
+        android:padding="8dp"
+        android:text="Back to Teams"
+        android:textColor="#3A8ADE"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/developerName"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/developer_name"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/appVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_version"
+        android:textColor="#FFFFFF" />
+</LinearLayout>
